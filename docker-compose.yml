@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  llama_index_app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./storage:/app/storage
+    env_file:
+      - .env
