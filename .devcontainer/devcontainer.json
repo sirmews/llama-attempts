@@ -1,0 +1,39 @@
+{
+	"name": "Llama Dev Container",
+	"dockerFile": "../Dockerfile",
+	"workspaceFolder": "/app",
+	"forwardPorts": [8000],
+	"portsAttributes": {
+		"8000": {
+			"label": "Chainlit",
+			"onAutoForward": "notify"
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"GitHub.copilot-labs",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"ms-python.isort",
+				"ms-python.vscode-pylance",
+				"ms-azuretools.vscode-docker",
+				"tamasfe.even-better-toml"
+			],
+			"git.path": "/usr/bin/git",
+			"python.testing.unittestEnabled": false,
+			"python.testing.pytestEnabled": true,
+			"python.formatting.provider": "black",
+			"python.linting.mypyEnabled": true,
+			"python.linting.enabled": true
+		}
+	},
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached"
+	]
+}
