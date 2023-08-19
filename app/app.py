@@ -22,7 +22,8 @@ try:
 except:
     from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader
 
-    documents = SimpleDirectoryReader("./data").load_data()
+    required_exts = [".md", ".txt", ".html"]
+    documents = SimpleDirectoryReader("./data", required_exts=required_exts, recursive=False).load_data()
     index = GPTVectorStoreIndex.from_documents(documents)
     index.storage_context.persist()
 
