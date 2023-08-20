@@ -2,7 +2,9 @@ import os
 
 import chainlit as cl
 import openai
+from langchain.agents import AgentType, Tool, initialize_agent
 from langchain.chat_models import ChatOpenAI
+from langchain.utilities import WikipediaAPIWrapper
 from llama_index import (LLMPredictor, ServiceContext, StorageContext,
                          load_index_from_storage)
 from llama_index.callbacks.base import CallbackManager
@@ -13,6 +15,14 @@ from llama_index.response.schema import Response, StreamingResponse
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 STREAMING = True
+
+wikipedia = WikipediaAPIWrapper()
+
+wikipedia_tool = Tool(
+    name="Wikipedia",
+    func=wikipedia.run,
+    description="A useful tool for searching the Internet to find information on world events, issues, etc. Worth using for general topics. Use precise questions.",
+)
 
 try:
     # rebuild storage context

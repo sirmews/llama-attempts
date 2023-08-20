@@ -1,0 +1,16 @@
+2023-08-20 10:55:53 INFO     uvicorn.error   Will watch for changes in these directories: ['/chroma']
+2023-08-20 10:55:53 INFO     uvicorn.error   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2023-08-20 10:55:53 INFO     uvicorn.error   Started reloader process [1] using WatchFiles
+2023-08-20 10:56:57 INFO     uvicorn.error   Stopping reloader process [1]
+2023-08-20 10:56:59 INFO     uvicorn.error   Will watch for changes in these directories: ['/chroma']
+2023-08-20 10:56:59 INFO     uvicorn.error   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2023-08-20 10:56:59 INFO     uvicorn.error   Started reloader process [1] using WatchFiles
+2023-08-20 10:57:00 INFO     uvicorn.error   Stopping reloader process [1]
+2023-08-20 11:01:53 INFO     uvicorn.error   Will watch for changes in these directories: ['/chroma']
+2023-08-20 11:01:53 INFO     uvicorn.error   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2023-08-20 11:01:53 INFO     uvicorn.error   Started reloader process [1] using WatchFiles
+2023-08-20 11:02:08 INFO     uvicorn.error   Stopping reloader process [1]
+2023-08-20 11:04:40 INFO     uvicorn.error   Will watch for changes in these directories: ['/chroma']
+2023-08-20 11:04:40 INFO     uvicorn.error   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2023-08-20 11:04:40 INFO     uvicorn.error   Started reloader process [1] using WatchFiles
+2023-08-20 11:07:24 INFO     uvicorn.error   Stopping reloader process [1]

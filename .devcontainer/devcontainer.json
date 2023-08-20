@@ -1,7 +1,7 @@
 {
 	"name": "Llama Dev Container",
-	"dockerFile": "../Dockerfile",
-	"workspaceFolder": "/app",
+	"dockerComposeFile": ["../docker-compose.yml"],
+	"service": "chainlit",
 	"forwardPorts": [8000],
 	"portsAttributes": {
 		"8000": {
@@ -10,7 +10,8 @@
 		}
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/git:1": {}
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/sshd:1": {}
 	},
 	"customizations": {
 		"vscode": {
@@ -23,7 +24,8 @@
 				"ms-python.isort",
 				"ms-python.vscode-pylance",
 				"ms-azuretools.vscode-docker",
-				"tamasfe.even-better-toml"
+				"tamasfe.even-better-toml",
+				"ms-vscode.makefile-tools"
 			],
 			"git.path": "/usr/bin/git",
 			"python.testing.unittestEnabled": false,
