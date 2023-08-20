@@ -11,4 +11,4 @@ RUN apt-get update && apt-get upgrade -y && \
 #     make install
 
 # Copy in the load-extensions script
-COPY scripts/load-extensions.sh /docker-entrypoint-initdb.d/
+COPY scripts/ /docker-entrypoint-initdb.d/
