@@ -8,3 +8,4 @@ storage
 data
 .DS_Store
 .chainlit
+postgres_data
