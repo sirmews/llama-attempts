@@ -21,4 +21,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 # Run the application
-CMD ["bash"]
+CMD ["chainlit", "run", "app.py"]

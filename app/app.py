@@ -1,32 +1,49 @@
+import logging
 import os
 
 import chainlit as cl
 import openai
+from database import create_index
 from langchain.chat_models import ChatOpenAI
-from llama_index import (LLMPredictor, ServiceContext, StorageContext,
+from langchain.llms import HuggingFacePipeline
+from llama_index import (GPTVectorStoreIndex, LLMPredictor, ServiceContext,
+                         SimpleDirectoryReader, StorageContext,
                          load_index_from_storage)
 from llama_index.callbacks.base import CallbackManager
+from llama_index.indices.vector_store import VectorStoreIndex
 from llama_index.query_engine.retriever_query_engine import \
     RetrieverQueryEngine
 from llama_index.response.schema import Response, StreamingResponse
+from llama_index.vector_stores import PGVectorStore
+from psycopg2 import OperationalError
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
+postgres_password = os.environ.get("POSTGRES_PASSWORD")
+postgres_host = os.environ.get("POSTGRES_HOST")
+postgres_db = os.environ.get("POSTGRES_DB")
+postgres_user = os.environ.get("POSTGRES_USER")
 
 STREAMING = True
 
+logging.info("Run started...")
+required_exts = [".md", ".txt", ".html"]
+documents = SimpleDirectoryReader("./data", required_exts=required_exts, recursive=False).load_data()
+logging.info(f"Loaded {len(documents)} documents")
 try:
-    # rebuild storage context
-    storage_context = StorageContext.from_defaults(persist_dir="./storage")
-    # load index
-    index = load_index_from_storage(storage_context)
-except:
-    from llama_index import GPTVectorStoreIndex, SimpleDirectoryReader
-
-    required_exts = [".md", ".txt", ".html"]
-    documents = SimpleDirectoryReader("./data", required_exts=required_exts, recursive=False).load_data()
-    index = GPTVectorStoreIndex.from_documents(documents)
-    index.storage_context.persist()
-
+    index = create_index(
+        database=postgres_db,
+        host=postgres_host,
+        password=postgres_password,
+        port=5432,
+        user=postgres_user,
+        table_name="data",
+        documents=documents
+    )
+    index.vector_store.query
+except OperationalError:
+    logging.error("Error connecting to PostgreSQL. Ensure the service is running and the connection details are correct.")
+except Exception as e:
+    logging.error(f"An unexpected error occurred: {str(e)}")
 
 @cl.on_chat_start
 async def factory():
